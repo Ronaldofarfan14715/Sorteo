@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" >
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" >
+    <script src="../js/ValidarLogin.js"></script>
+    
+</head>
+</head>
+
+<body>
+
+
+
+    <div class="col-lg-3" style="margin:auto;margin-top:50px">
+        <div class="modal-content">
+            <div class="modal-header " style="background-color: lightseagreen;">
+
+                <img src="../img/usuario.png" alt="..." class="rounded-circle w-25 m-auto">
+
+            </div>
+
+            <div class="modal-body">
+
+
+                <form action="../controller/LoginController.php" class="needs-validation" novalidate  method="post">
+
+                    <div class="form-group ">
+
+                        <label for="">ID DE PROFESOR </label>
+                        <input name="id" type="text" class="form-control" id="validationTooltip01" required>
+                        <div class="valid-feedback">
+                            Buen Trabajo!
+                        </div>
+                        <div class="invalid-feedback">
+                            Por favor! Ingrese su id de usuario.
+                        </div>
+                    </div>
+                    <div class="form-group ">
+
+                        <label for="">PASSWORD</label>
+                        <input name="pass" type="password" class="form-control" id="validationTooltip02" required>
+                        <div class="valid-feedback">
+                            Buen Trabajo!
+                        </div>
+                        <div class="invalid-feedback">
+                            Por favor! Ingrese su contraseña.
+                        </div>
+                    </div>
+
+
+
+
+
+
+            </div>
+
+            <div class="modal-footer">
+
+                <div class="form-group m-auto">
+
+
+                    <button type="submit" class="btn btn-danger ">INICIAR SECION</button>
+
+                    </form>
+                </div>
+            </div>
+
+
+
+        </div>
+    </div>
+
+
+
+
+
+</body>
+
+
+
+
+</html>
