@@ -9,7 +9,7 @@ function MostrarCurso($fecha,$campo){
 
 	$cn = new Conexion();
 	$con = $cn->Conexion();
-	$res=$con->query("SELECT curso.codCurso, curso.nombre , agrupaciones.seccion,cursoexamen.idTurnofk, cursoexamen.codAulafk,cursoexamen.tipoexamen from curso inner join agrupaciones on curso.codCurso = agrupaciones.codCursofk inner join cursoexamen on agrupaciones.idCursoSeccion=cursoexamen.idAgrupacionfk where cursoexamen.idTurnofk='$fecha' and cursoexamen.tipoexamen='$campo' ORDER BY RAND()");
+	$res=$con->query("SELECT curso.codCurso, curso.nombre , agrupaciones.seccion,cursoexamen.idTurnofk, cursoexamen.codAulafk,cursoexamen.tipoexamen from curso inner join agrupaciones on curso.codCurso = agrupaciones.codCursofk inner join cursoexamen on agrupaciones.idCursoSeccion=cursoexamen.idAgrupacionfk where cursoexamen.idTurnofk='$fecha' and cursoexamen.tipoexamen='$campo'");
 /*
 	SELECT curso.codCurso, curso.nombre , agrupaciones.seccion,cursoexamen.idTurnofk, cursoexamen.codAulafk,cursoexamen.tipoexamen from curso inner join agrupaciones on curso.codCurso = agrupaciones.codCursofk inner join cursoexamen on agrupaciones.idCursoSeccion=cursoexamen.idAgrupacionfk where cursoexamen.idTurnofk='$fecha' and cursoexamen.tipoexamen='$campo'
 

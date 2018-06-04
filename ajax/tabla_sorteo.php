@@ -53,21 +53,22 @@ switch ($tipo) {
 
        			$num = $curso->num_rows;
                             $num2= $docente->num_rows;
+                            $n= 0;
 
        			if($num>0){
        			while($datos=$curso->fetch_array()){
 
-                            
+                            $n++;
 
                      ?>
                             <tr>
-                                   <td><input type="text" name="" value="<?php echo $datos[1]; ?>"></td>
-                                   <td><input type="text" name="" value="<?php echo $datos[4]." ".$datos[2]; ?>"></td>
-                                   <td><input type="text" name="" value="<?php echo $array_docente[$contar]; ?>"></td>
+                                   <td><input type="text" id="<?php echo "c".$n; ?>" value="<?php echo $datos[1]; ?>"></td>
+                                   <td><input type="text" id="<?php echo "a".$n; ?>"value="<?php echo $datos[4]." ".$datos[2]; ?>"></td>
+                                   <td><input type="text" id="<?php echo "d".$n; ?>" value="<?php echo $array_docente[$contar]; ?>"></td>
                                    <?php if($contar+$num<$num2)
                                    {
                                     ?>
-                                   <td><input type="text" name="" value="<?php echo $array_docente[$contar+$num]; ?>"></td>
+                                   <td><input type="text" id="<?php echo "r".$n; ?>" value="<?php echo $array_docente[$contar+$num]; ?>"></td>
                                    <?php 
                                     }
                                           $contar++;    

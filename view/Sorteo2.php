@@ -44,6 +44,35 @@ $("#hora-reloj").html(hours+":"+minutes+":"+seconds+" "+dn);
 console.log("hola");
 
 }
+
+function GuardarSorteo(){
+	var data = new Object();
+	var t = $("#tabla-sorteo tr").length;
+	for( let i = 1;i<t;i++){
+		data[i]=new Object();
+		data[i]["c"]=$("#c"+i).val();
+		data[i]["a"]=$("#a"+i).val();
+
+		data[i]["d"]=$("#d"+i).val();
+
+		if($("#r"+i).length){
+			data[i]["r"]=$("#r"+i).val();
+		}
+	}
+
+	var newData = JSON.stringify(data);
+	//console.log(newData);
+
+	$.ajax({
+		type: 'post',
+		data: {data:newData},
+		url: '../ajax/GuardarSorteo.php',
+		success: function(res){
+			console.log(res);
+		}
+	});
+}
+
 	$(document).ready(function(){
 		MostrarHora();
 		setInterval("MostrarHora()",1000);
@@ -266,7 +295,7 @@ function MostrarSorteo(){
 
 
 					<label class=" font-weight-bold" for="">Miembro de la comision de examenes:</label>
-					<label class="" for="">Ronaldo farfan ayma</label>
+					<label class="" for=""><?php echo $_SESSION["id"]; ?></label>
 					<br>
 					
 		
@@ -487,13 +516,15 @@ function MostrarSorteo(){
         </button>
       </div>
       <div class="modal-body">
-      	<div id="tabla-sorteo">
+      	<table id="tabla-sorteo">
 				
-		</div>
+		</table>
       </div>
       <div class="modal-footer d-flex justify-content-center">
         <button type="button" class="btn btn-danger" onclick="MostrarSorteo();">SORTEAR DE NUEVO</button>
-        <button type="button" class="btn btn-primary">GUARDAR CAMBIOS</button>
+        
+
+        <button type="button" id="GuardarSorteo" onclick="GuardarSorteo();" class="btn btn-primary">GUARDAR CAMBIOS</button>
       </div>
     </div>
   </div>
