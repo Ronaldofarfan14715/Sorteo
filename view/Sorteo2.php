@@ -15,6 +15,11 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
 	<title></title>
+	<link rel="stylesheet" type="text/css" href="../js/css/alertify.css">
+	<link rel="stylesheet" type="text/css" href="../js/css/themes/default.css">
+
+	
+	<script src="../js/alertify.js"></script>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" >
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -72,7 +77,8 @@ function GuardarSorteo(){
 		data: {data:newData,turno:turno},
 		url: '../ajax/GuardarSorteo.php',
 		success: function(res){
-			console.log(res);
+			//console.log(res);
+			$("#div-alertify").html(res);
 		}
 	});
 }
@@ -240,7 +246,21 @@ function MostrarSorteo(){
 }
 
 
+	function logout(){
+			
+			
 
+			alertify.confirm("Salir del Sistema","¿Esta Seguro que desea Salir?",
+		  function(){
+					alertify.success('Ok');
+				location.assign('../model/logout.php')
+			},
+			function(){
+			alertify.error('Cancel');
+			
+			  });
+				
+			}
 
 
 
@@ -271,11 +291,11 @@ function MostrarSorteo(){
 
 			<div class="navbar-nav">
 				<?php if ($_SESSION['rol']==1){?>
-				<a href="RegistroDeSupervision.php" class="nav-item nav-link  ">Registro de Supervision</a>
+				<a href="sorteo2.php" class="nav-item nav-link  ">Registro de Supervision</a>
 				<?php }?>
 				<a href="RegistroProfesores.php " class="nav-item nav-link ">Registro de Profesores</a>
 				
-				<a href="../model/logout.php" class="nav-item nav-link">Cerrar Sesion</a>
+				<span onclick="logout();" href="../model/logout.php" class="nav-item nav-link">Cerrar Sesion</span>
 
 			</div>
 
@@ -468,7 +488,7 @@ function MostrarSorteo(){
 	</div>
 	
 </div>
-
+<div id="div-alertify"></div>
 <div class="col-sm-5 col-md-4 col-lg-6  mb-sm-4" role="document">
 
 	<div class="modal-content">
@@ -519,7 +539,7 @@ function MostrarSorteo(){
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <div class="modal-body">
+      <div class="modal-body table-responsive">
       	<table id="tabla-sorteo">
 				
 		</table>

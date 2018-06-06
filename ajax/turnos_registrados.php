@@ -30,7 +30,7 @@ $array=array();
 
 while ($rowturno=$result->fetch_row()){
 	$checkbox="disabled='true'";
-	$bg=" style='background:blue;'";
+	$bg=" style='background:gray;'";
 	//$bg2=" style='background:blue;'";
 	$array += [$rowturno[0]=> ['checkbox'=>$checkbox, 'bg'=>$bg]];
 
@@ -44,7 +44,8 @@ while ($rowturno=$result->fetch_row()){
 	
 
 ?>
-<table class="table text-center">
+<div class="table-responsive">
+<table class="table text-center table-bordered">
 
 							<thead class="thead-dark">
 								<tr>
@@ -194,6 +195,7 @@ while ($rowturno=$result->fetch_row()){
 
 							</tbody>
 						</table>
+</div>
 <?php
 
 }else{

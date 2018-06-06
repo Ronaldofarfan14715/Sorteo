@@ -89,7 +89,13 @@
 
 		$(document).on('click','#boton-ver',function(){
 			let dniboton=$(this).data('dni');
-			window.open('../ajax/turnos_registrados.php?codigo='+dniboton,'640x480','toolbar=no,status=no,scrollbars=no,location=no,menubar=no,directories=no,width=640,height=250');
+			var iMyWidth;
+			var iMyHeight;
+		iMyWidth = (window.screen.width/2) - (75 + 10);
+
+		iMyHeight = (window.screen.height/2) - (100 + 50);
+
+		window.open('../ajax/turnos_registrados.php?codigo='+dniboton,'880x350','toolbar=no,status=no,scrollbars=no,location=no,menubar=no,directories=no,left='+ iMyWidth + ",top=" + iMyHeight + ",screenX=" + iMyWidth + ",screenY=" + iMyHeight  );
 		});
 
 
@@ -195,6 +201,22 @@
 	}
 	
 });
+
+function logout(){
+			
+			
+
+			alertify.confirm("Salir del Sistema","¿Esta Seguro que desea Salir?",
+		  function(){
+					alertify.success('Ok');
+				location.assign('../model/logout.php')
+			},
+			function(){
+			alertify.error('Cancel');
+			
+			  });
+				
+			}
 	</script>
 
 
@@ -237,13 +259,12 @@ $con->Conexion();
 
 			<div class="navbar-nav">
 				<?php if ($_SESSION['rol']==1){?>
-				<a href="RegistroDeSupervision.php" class="nav-item nav-link  ">Registro de Supervision</a>
+				<a href="sorteo2.php" class="nav-item nav-link  ">Registro de Supervision</a>
 				<?php }?>
 				<a href="RegistroProfesores.php " class="nav-item nav-link ">Registro de Profesores</a>
 
 				
-				
-				<a href="../model/logout.php" class="nav-item nav-link">Cerrar Sesion</a>
+				<span onclick="logout();" href="../model/logout.php" class="nav-item nav-link">Cerrar Sesion</span>
 
 			</div>
 

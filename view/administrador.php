@@ -16,18 +16,39 @@
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
 	<title></title>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" >
+	<link rel="stylesheet" type="text/css" href="../js/css/alertify.css">
+	<link rel="stylesheet" type="text/css" href="../js/css/themes/default.css">
 
+	
+	<script src="../js/alertify.js"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" >
 	<script type="text/javascript">
 		function logout(){
-			let con= confirm('ESTA SEGURO QUE DESEA SALIR?');
-			if(con==true){
-				location.assign('../model/logout.php');
-			}
+			
+			
+
+		alertify.confirm("Salir del Sistema","¿Esta Seguro que desea Salir?",
+	  function(){
+   		 	alertify.success('Ok');
+			location.assign('../model/logout.php')
+  	  },
+  	  function(){
+    	alertify.error('Cancel');
+		
+  		});
+			
 		}
+
+
+		
+
+
+
+
+		  
 	</script>
 </head>
 
@@ -56,7 +77,7 @@
 
 			<div class="navbar-nav">
 				<?php if ($_SESSION['rol']==1){?>
-				<a href="RegistroDeSupervision.php" class="nav-item nav-link  ">Registro de Supervision</a>
+				<a href="sorteo2.php" class="nav-item nav-link  ">Registro de Supervision</a>
 				<?php }?>
 				<a href="RegistroProfesores.php " class="nav-item nav-link ">Registro de Profesores</a>
 				

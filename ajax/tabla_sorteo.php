@@ -61,19 +61,22 @@ switch ($tipo) {
                             $n++;
 
                      ?>
+                            <div class="form-group">
                             <tr>
-                                   <td><input type="text" id="<?php echo "c".$n; ?>" value="<?php echo $datos[1]; ?>"></td>
-                                   <td><input type="text" id="<?php echo "a".$n; ?>"value="<?php echo $datos[4]." ".$datos[2]; ?>"></td>
-                                   <td><input type="text" id="<?php echo "d".$n; ?>" value="<?php echo $array_docente[$contar]; ?>"></td>
+
+                                   <td><input class="form-control" type="text" id="<?php echo "c".$n; ?>" value="<?php echo $datos[1]; ?>"></td>
+                                   <td><input class="form-control"  type="text" id="<?php echo "a".$n; ?>"value="<?php echo $datos[4]." ".$datos[2]; ?>"></td>
+                                   <td><input class="form-control"  type="text" id="<?php echo "d".$n; ?>" value="<?php echo $array_docente[$contar]; ?>"></td>
                                    <?php if($contar+$num<$num2)
                                    {
                                     ?>
-                                   <td><input type="text" id="<?php echo "r".$n; ?>" value="<?php echo $array_docente[$contar+$num]; ?>"></td>
+                                   <td><input class="form-control"  type="text" id="<?php echo "r".$n; ?>" value="<?php echo $array_docente[$contar+$num]; ?>"></td>
                                    <?php 
                                     }
                                           $contar++;    
                                     ?>                           
-                            </tr>          
+                            </tr>
+                            </div>          
                      <?php 
               			}
                             }
