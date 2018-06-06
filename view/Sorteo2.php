@@ -41,7 +41,7 @@
 			seconds="0"+seconds;
 
 $("#hora-reloj").html(hours+":"+minutes+":"+seconds+" "+dn);
-console.log("hola");
+//console.log("hola");
 
 }
 
@@ -62,10 +62,14 @@ function GuardarSorteo(){
 
 	var newData = JSON.stringify(data);
 	//console.log(newData);
+	let dia=$("#dia").val();
+	let hora=$("#hora").val();
+
+	let turno = dia+hora;
 
 	$.ajax({
 		type: 'post',
-		data: {data:newData},
+		data: {data:newData,turno:turno},
 		url: '../ajax/GuardarSorteo.php',
 		success: function(res){
 			console.log(res);
