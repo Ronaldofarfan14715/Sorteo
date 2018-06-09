@@ -89,13 +89,18 @@
 
 		$(document).on('click','#boton-ver',function(){
 			let dniboton=$(this).data('dni');
-			var iMyWidth;
-			var iMyHeight;
-		iMyWidth = (window.screen.width/2) - (75 + 10);
 
-		iMyHeight = (window.screen.height/2) - (100 + 50);
+			// definimos la anchura y altura de la ventana
+		var altura=350;
+		var anchura=600;
+		
+		// calculamos la posicion x e y para centrar la ventana
+		var y=parseInt((window.screen.height/2)-(altura/2));
+		var x=parseInt((window.screen.width/2)-(anchura/2));
+		
 
-		window.open('../ajax/turnos_registrados.php?codigo='+dniboton,'880x350','toolbar=no,status=no,scrollbars=no,location=no,menubar=no,directories=no,left='+ iMyWidth + ",top=" + iMyHeight + ",screenX=" + iMyWidth + ",screenY=" + iMyHeight  );
+
+		window.open('../ajax/turnos_registrados.php?codigo='+dniboton, target='blank','width='+anchura+',height='+altura+',top='+y+',left='+x+',toolbar=no,location=no,status=no,menubar=no,scrollbars=no,directories=no,resizable=no');
 		});
 
 
