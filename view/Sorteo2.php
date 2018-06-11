@@ -69,13 +69,13 @@ function GuardarSorteo(){
 	//console.log(newData);
 	let dia=$("#dia").val();
 	let hora=$("#hora").val();
-
+	let tipo=$("#tipoexa").val();
 	let turno = dia+hora;
 
 	$.ajax({
 		type: 'post',
-		data: {data:newData,turno:turno},
-		url: '../ajax/GuardarSorteo.php',
+		data: {data:newData,turno:turno,tipo:tipo},
+		url: '../ajax/guardarSorteo.php',
 		success: function(res){
 			//console.log(res);
 			$("#div-alertify").html(res);
@@ -168,6 +168,43 @@ function MostrarCursos(){
 		});
 	}
 }
+
+function ComprobarSorteo(){
+
+	let dia=$("#dia").val();
+	let hora=$("#hora").val();
+
+	if (dia!='' && hora!=''){
+
+		$.ajax({
+			type:'post',
+			url:'../ajax/ComprobarSorteo.php',
+			data:{dia:dia,hora:hora},
+			success: function(data){
+
+			var resultado=JSON.parse(data);
+			if(resultado==0)
+			{
+				$( "#sorte" ).prop( "disabled", false );
+				
+			}
+			else
+			{	
+				$("#sorte").removeClass("btn-outline-success");
+				$("#sorte").addClass("btn-dark");
+				$( "#sorte" ).prop( "disabled", true );
+			}
+			}
+			
+		});
+
+
+
+	}
+
+
+
+}
 function MostrarDocAsistidos(){
 
 	let tipo=$("#tipoexa").val();
@@ -228,6 +265,7 @@ $("#listar-doc").click(function(e){
 	e.preventDefault();
 	MostraDocAsistencia();
 	MostrarCursos();
+	ComprobarSorteo();
 	MostrarDocAsistidos();
 	
 
@@ -523,7 +561,7 @@ $('#GuardarAsistencia').click(function(e){
 	
 </div>
 <div id="div-alertify"></div>
-<div class="col-sm-6 col-md-4 col-lg-6  mb-sm-4 " role="document">
+<div class="col-sm-6 col-md-4 col-lg-6  mb-sm-4" role="document">
 
 	<div class="modal-content">
 		<div class="modal-header text-center">
@@ -557,8 +595,9 @@ $('#GuardarAsistencia').click(function(e){
 
 
 <div class="d-flex justify-content-center">
-<input type="submit" id="sorte" type="button" class="btn btn-outline-success btn-lg-lg btn-sm-sm" value="GENERAR SORTEO" data-toggle="modal" >
-<input type="submit" id="sorteupdate" type="button" class="btn btn-outline-warning btn-lg-lg ml-3 btn-sm-sm" value="MODIFICAR SORTEO"  >
+<input type="submit" id="sorte" type="button" class="btn btn-outline-success btn-lg mr-sm-3" value="GENERAR SORTEO" data-toggle="modal" >
+<input type="submit" id="sorteupd" type="button" class="btn btn-outline-warning btn-lg" value="MODIFICAR SORTEO"  >
+
 </div>
 
 </div>
@@ -582,6 +621,7 @@ $('#GuardarAsistencia').click(function(e){
       <div class="modal-footer d-flex justify-content-center">
         <button type="button" class="btn btn-danger" id="sornew">SORTEAR DE NUEVO</button>
         
+
         <button type="button" id="GuardarSorteo" onclick="GuardarSorteo();" class="btn btn-primary">GUARDAR CAMBIOS</button>
       </div>
     </div>

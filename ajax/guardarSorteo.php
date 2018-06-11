@@ -5,6 +5,8 @@ $con=new Conexion();
 $cn=$con->Conexion();
 
 $turno = $_POST['turno'];
+$tipo = $_POST['tipo'];
+
 
 //echo $turno;
 $rs=json_decode($_POST['data']);
@@ -53,7 +55,7 @@ if($rscol[0] == null){
     
     $n = $rscol[0]+1;
 }
-$sql = "INSERT INTO registro_sorteo values (NULL,'".$resu[$i]['c']."','".$resu[$i]['a']."','".$resu[$i]['d']."',".$r.",$n,$turno)";
+$sql = "INSERT INTO registro_sorteo values (NULL,'".$resu[$i]['c']."','".$resu[$i]['a']."','".$resu[$i]['d']."',".$r.",$n,$turno,'".$tipo."')";
 $rs=$cn->query($sql);
 
 if($rs){
