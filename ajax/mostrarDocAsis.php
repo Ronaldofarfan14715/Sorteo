@@ -42,8 +42,8 @@ if($num>0){
 		?>
 		<tr>
 <td><?php echo $row[1]; ?></td>
-<td style="font-size: 12px;"><?php echo $row[0];?></td>
-<td>---------------</td>
+<td><?php echo $row[0];?></td>
+
 </tr>
 
 <?php

@@ -114,6 +114,7 @@ $("#lista-doc").click(function(e){
 				});
 }
 			});
+			
 
 
 $("#sorteo-doc").click(function(e){
@@ -152,26 +153,6 @@ $("#sorteo-doc").click(function(e){
 				});
 }
 			});
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 		$("#hola").click(function(e){

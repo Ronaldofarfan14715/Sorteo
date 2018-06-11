@@ -80,6 +80,7 @@ switch ($tipo) {
                      <?php 
               			}
                             }
+                            
               		
 
        		 ?>

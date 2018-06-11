@@ -86,6 +86,66 @@ function GuardarSorteo(){
 	$(document).ready(function(){
 		MostrarHora();
 		setInterval("MostrarHora()",1000);
+
+
+		function llamarModalSor(){
+
+$("#modal-sorteo").modal('show');
+}
+
+function MostrarSorteo(){
+	let tipo=$("#tipoexa").val();
+	let dia=$("#dia").val();
+	let hora=$("#hora").val();
+
+	if(tipo!='' && dia!='' && hora!=''){
+			$.ajax({
+
+				type: 'post',
+				url: '../ajax/tabla_sorteo.php',
+				data: {tipo:tipo,dia:dia,hora:hora},
+				beforeSend:function(){
+			
+				$("#tabla-sorteo").html("");
+				$("#sor").html("<img width='270px' height='270px' src='../img/carga.gif' style='margin: auto;' />");
+				
+				},
+				
+				success :function(resp){
+
+					
+						
+					setTimeout(function(){
+					$("#tabla-sorteo").html(resp);
+					$("#sor").html("");
+					//$('#sor').hide();
+					//$("#sor").html("");
+				
+					},2000);
+	
+				},
+				error: function(respuesta){
+					console.log("error",respuesta);
+				},
+
+			});
+}
+
+}
+
+
+		$("#sorte").click(function(e){
+
+			e.preventDefault();
+			MostrarSorteo();
+			llamarModalSor();
+
+		});
+		$('#sornew').click(function(e){
+			e.preventDefault();
+			MostrarSorteo();
+		});
+
 function MostrarCursos(){
 
 	let tipo=$("#tipoexa").val();
@@ -142,7 +202,7 @@ function MostraDocAsistencia(){
 
 			//alert(tipo);
 
-				$.ajax(  {
+				$.ajax({
 
 					type: 'post',
 					url: '../ajax/asistencia.php',
@@ -216,34 +276,8 @@ $('#GuardarAsistencia').click(function(e){
 
 });
 
-function MostrarSorteo(){
 
-	let tipo=$("#tipoexa").val();
-	let dia=$("#dia").val();
-	let hora=$("#hora").val();
 
-		if(tipo!='' && dia!='' && hora!=''){
-
-			//alert(tipo);
-
-				$.ajax(  {
-
-					type: 'post',
-					url: '../ajax/tabla_sorteo.php',
-					data: {tipo:tipo,dia:dia,hora:hora},
-					success :function(resp){
-						$("#tabla-sorteo").html(resp);
-					},
-					error: function(respuesta){
-						console.log("error",respuesta);
-					}
-
-				});
-}else{
-	alert("VACIO");
-}
-
-}
 
 
 	function logout(){
@@ -445,7 +479,7 @@ function MostrarSorteo(){
 	
 
 
-<div class="col-sm-7 col-md-8 col-lg-6 mb-sm-4" role="document">
+<div class="col-sm-6 col-md-8 col-lg-6 mb-sm-4" role="document">
 
 	<div class="modal-content">
 		<div class="modal-header text-center">
@@ -489,7 +523,7 @@ function MostrarSorteo(){
 	
 </div>
 <div id="div-alertify"></div>
-<div class="col-sm-5 col-md-4 col-lg-6  mb-sm-4" role="document">
+<div class="col-sm-6 col-md-4 col-lg-6  mb-sm-4 " role="document">
 
 	<div class="modal-content">
 		<div class="modal-header text-center">
@@ -505,7 +539,6 @@ function MostrarSorteo(){
 						<tr>
 							<th>DNI</th>
 							<th>Docente</th>
-							<th>Reemplazo</th>
 						</tr>
 					</thead>
 					<tbody id="tabla-doc-asis">
@@ -522,15 +555,16 @@ function MostrarSorteo(){
 	
 </div>
 
-<div class="d-flex justify-content-center">
-<input type="submit" id="" type="button" class="btn btn-outline-success btn-lg" value="GENERAR SORTEO" data-toggle="modal" data-target="#sorteo" onclick="MostrarSorteo();">
 
+<div class="d-flex justify-content-center">
+<input type="submit" id="sorte" type="button" class="btn btn-outline-success btn-lg-lg btn-sm-sm" value="GENERAR SORTEO" data-toggle="modal" >
+<input type="submit" id="sorteupdate" type="button" class="btn btn-outline-warning btn-lg-lg ml-3 btn-sm-sm" value="MODIFICAR SORTEO"  >
 </div>
 
 </div>
 
 <!-- modal del sorteo-->
-<div class="modal fade" id="sorteo" tabindex="-1" role="dialog" aria-labelledby="sorteo" aria-hidden="true">
+<div class="modal fade" id="modal-sorteo" tabindex="-1" role="dialog" aria-labelledby="sorteo" aria-hidden="true">
   <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -540,14 +574,14 @@ function MostrarSorteo(){
         </button>
       </div>
       <div class="modal-body table-responsive">
+	  <div id="sor" width="100%" style="text-align: center;"></div>				
       	<table id="tabla-sorteo">
 				
 		</table>
       </div>
       <div class="modal-footer d-flex justify-content-center">
-        <button type="button" class="btn btn-danger" onclick="MostrarSorteo();">SORTEAR DE NUEVO</button>
+        <button type="button" class="btn btn-danger" id="sornew">SORTEAR DE NUEVO</button>
         
-
         <button type="button" id="GuardarSorteo" onclick="GuardarSorteo();" class="btn btn-primary">GUARDAR CAMBIOS</button>
       </div>
     </div>
