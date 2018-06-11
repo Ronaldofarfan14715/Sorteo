@@ -70,11 +70,12 @@ function GuardarSorteo(){
 	let dia=$("#dia").val();
 	let hora=$("#hora").val();
 	let tipo=$("#tipoexa").val();
+	let periodo =$("#periodo").val();
 	let turno = dia+hora;
 
 	$.ajax({
 		type: 'post',
-		data: {data:newData,turno:turno,tipo:tipo},
+		data: {data:newData,turno:turno,tipo:tipo,periodo:periodo},
 		url: '../ajax/guardarSorteo.php',
 		success: function(res){
 			//console.log(res);
@@ -97,13 +98,14 @@ function MostrarSorteo(){
 	let tipo=$("#tipoexa").val();
 	let dia=$("#dia").val();
 	let hora=$("#hora").val();
+	let periodo=$("#periodo").val();
 
-	if(tipo!='' && dia!='' && hora!=''){
+	if(tipo!='' && dia!='' && hora!='' &&periodo!=''){
 			$.ajax({
 
 				type: 'post',
 				url: '../ajax/tabla_sorteo.php',
-				data: {tipo:tipo,dia:dia,hora:hora},
+				data: {tipo:tipo,dia:dia,hora:hora,periodo:periodo},
 				beforeSend:function(){
 			
 				$("#tabla-sorteo").html("");
@@ -185,6 +187,8 @@ function ComprobarSorteo(){
 			var resultado=JSON.parse(data);
 			if(resultado==0)
 			{
+				$("#sorte").addClass("btn-outline-success");
+				$("#sorte").removeClass("btn-dark");
 				$( "#sorte" ).prop( "disabled", false );
 				
 			}
@@ -280,6 +284,12 @@ $(document).on('change','input[type=checkbox]',function(){
 			valordnitotal.splice(pos,1);
 		}
 		console.log(valordnitotal);
+});
+
+$("#sorteupd").click(function(){
+
+
+
 });
 
 $('#GuardarAsistencia').click(function(e){
@@ -435,6 +445,20 @@ $('#GuardarAsistencia').click(function(e){
 								<option value="10">10:00 A 12:00</option>
 								<option value="12">12:00 A 2:00</option>
 								<option value="14">14:00 A 16:00</option>
+						
+							</select>
+						</div>
+					</div>
+
+					<div class="form-group row m-0">
+					<label for="" class="col-sm-4 col-form-label text-center ">PERIODO:</label>
+					<div class="col-sm-5 ml-4 mt-2 ">
+							<select id="periodo" name="periodox" class="custom-select custom-select-sm">
+								<option selected value="">PERIODO</option>
+								<option  value="181">2018-1</option>
+								<option value="182">2018-2</option>
+								<option value="191">2019-1</option>
+								<option value="192">2019-2</option>
 						
 							</select>
 						</div>
