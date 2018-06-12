@@ -11,8 +11,11 @@ $hora=$_POST['hora'];
 
 $fecha = $dia . $hora;
 
+$periodo= $_POST['periodo'];
+
+
 //echo $fecha;
-$sql = "SELECT * FROM registro_sorteo where Turno=$fecha";
+$sql = "SELECT * FROM registro_sorteo where Turno=$fecha and periodo=$periodo";
 
 
 $rs = $cn->query($sql);

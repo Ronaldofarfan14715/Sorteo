@@ -79,21 +79,75 @@ function GuardarSorteo(){
 		url: '../ajax/guardarSorteo.php',
 		success: function(res){
 			//console.log(res);
+			
 			$("#div-alertify").html(res);
+			ComprobarSorteo();
 		}
 	});
 }
+
+function ComprobarSorteo(){
+
+let dia=$("#dia").val();
+let hora=$("#hora").val();
+let periodo=$("#periodo").val();
+if (dia!='' && hora!='' && periodo!=''){
+
+	$.ajax({
+		type:'post',
+		url:'../ajax/ComprobarSorteo.php',
+		data:{dia:dia,hora:hora,periodo:periodo},
+		success: function(data){
+
+		var resultado=JSON.parse(data);
+		if(resultado==0)
+		{
+			$("#sorte").addClass("btn-outline-success");
+			$("#sorte").removeClass("btn-dark");
+			$( "#sorte" ).prop( "disabled", false );
+			
+		}
+		else
+		{	
+			$("#sorte").removeClass("btn-outline-success");
+			$("#sorte").addClass("btn-dark");
+			$( "#sorte" ).prop( "disabled", true );
+		}
+		}
+		
+	});
+
+
+
+}
+
+
+
+}
+
 
 	$(document).ready(function(){
 		MostrarHora();
 		setInterval("MostrarHora()",1000);
 
 
+
+		$("#GuardarSorteo").click(function(){
+
+			ComprobarSorteo();
+			GuardarSorteo();
+			
+			
+		});
+
+
+
 		function llamarModalSor(){
 
-$("#modal-sorteo").modal('show');
-}
+			$("#modal-sorteo").modal('show');
+		}
 
+		
 function MostrarSorteo(){
 	let tipo=$("#tipoexa").val();
 	let dia=$("#dia").val();
@@ -116,7 +170,7 @@ function MostrarSorteo(){
 				success :function(resp){
 
 					
-						
+					
 					setTimeout(function(){
 					$("#tabla-sorteo").html(resp);
 					$("#sor").html("");
@@ -139,8 +193,10 @@ function MostrarSorteo(){
 		$("#sorte").click(function(e){
 
 			e.preventDefault();
+			
 			MostrarSorteo();
 			llamarModalSor();
+			
 
 		});
 		$('#sornew').click(function(e){
@@ -171,44 +227,7 @@ function MostrarCursos(){
 	}
 }
 
-function ComprobarSorteo(){
 
-	let dia=$("#dia").val();
-	let hora=$("#hora").val();
-
-	if (dia!='' && hora!=''){
-
-		$.ajax({
-			type:'post',
-			url:'../ajax/ComprobarSorteo.php',
-			data:{dia:dia,hora:hora},
-			success: function(data){
-
-			var resultado=JSON.parse(data);
-			if(resultado==0)
-			{
-				$("#sorte").addClass("btn-outline-success");
-				$("#sorte").removeClass("btn-dark");
-				$( "#sorte" ).prop( "disabled", false );
-				
-			}
-			else
-			{	
-				$("#sorte").removeClass("btn-outline-success");
-				$("#sorte").addClass("btn-dark");
-				$( "#sorte" ).prop( "disabled", true );
-			}
-			}
-			
-		});
-
-
-
-	}
-
-
-
-}
 function MostrarDocAsistidos(){
 
 	let tipo=$("#tipoexa").val();
@@ -235,7 +254,7 @@ function MostrarDocAsistidos(){
 
 function MostraDocAsistencia(){
 
-		let tipo=$("#tipoexa").val();
+	let tipo=$("#tipoexa").val();
 	let dia=$("#dia").val();
 	let hora=$("#hora").val();
 
@@ -646,7 +665,33 @@ $('#GuardarAsistencia').click(function(e){
         <button type="button" class="btn btn-danger" id="sornew">SORTEAR DE NUEVO</button>
         
 
-        <button type="button" id="GuardarSorteo" onclick="GuardarSorteo();" class="btn btn-primary">GUARDAR CAMBIOS</button>
+        <button type="button" id="GuardarSorteo"  class="btn btn-primary">GUARDAR CAMBIOS</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="modal fade" id="modal-upd-sorteo" tabindex="-1" role="dialog" aria-labelledby="upd-sorteo" aria-hidden="true">
+  <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalCenterTitle">MODIFICACION DE SORTEO</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body table-responsive">
+	 			
+      	<table id="tabla-update-sorteo">
+				
+		</table>
+      </div>
+      <div class="modal-footer d-flex justify-content-center">
+        
+        
+
+        <button type="button" id="updateSorteo"  class="btn btn-primary">GUARDAR CAMBIOS</button>
       </div>
     </div>
   </div>
