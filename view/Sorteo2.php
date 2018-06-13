@@ -49,7 +49,44 @@ $("#hora-reloj").html(hours+":"+minutes+":"+seconds+" "+dn);
 //console.log("hola");
 
 }
+function ModificarSorteo(){
 
+	var data = new Object();
+	var t = $("#tabla-sorteo-update tr").length;
+	
+	for( let i = 1; i<t; i++){
+		data[i]= new Object();
+		data[i]["c"]=$("#c"+i).val();
+		data[i]["a"]=$("#a"+i).val();
+		data[i]["d"]=$("#d"+i).val();
+		data[i]["r"]=$("#r"+i).val();
+		data[i]["s"]=$("#s"+i).val();
+		data[i]["cod"]=$("#cod"+i).val();
+	}
+	
+
+	var newData = JSON.stringify(data);
+	let dia=$("#dia").val();
+	let hora=$("#hora").val();
+	let tipo=$("#tipoexa").val();
+	let periodo =$("#periodo").val();
+	let turno = dia+hora;
+
+	$.ajax({
+
+		type: 'post',
+		data: {data:newData,turno:turno,tipo:tipo,periodo:periodo},
+		url: '../ajax/ModificarSorteo.php',
+		success: function(hol){
+
+			//$("#div-alertify").html(hol);
+			$("#div-alertify").html(hol);
+		}
+		
+	});
+
+
+}
 function GuardarSorteo(){
 	var data = new Object();
 	var t = $("#tabla-sorteo tr").length;
@@ -141,6 +178,10 @@ if (dia!='' && hora!='' && periodo!='' && tipo!=''){
 			
 		});
 
+		$("#updateSorteo").click(function(){
+			ModificarSorteo();
+		});
+
 
 
 		function llamarModalSor(){
@@ -168,7 +209,7 @@ if (dia!='' && hora!='' && periodo!='' && tipo!=''){
 					data: {tipo:tipo,dia:dia,hora:hora,periodo:periodo},
 					success: function(de){
 					//tabla-update-sorteo
-					$("#tabla-update-sorteo").html(de);
+					$("#tabla-sorteo-update").html(de);
 				
 					},
 					error: function(rew){
@@ -720,11 +761,12 @@ $('#GuardarAsistencia').click(function(e){
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <div class="modal-body table-responsive">
-	 			
-      	<table id="tabla-update-sorteo">
+      <div class="modal-body table-responsive ">
+
+		 <table id="tabla-sorteo-update">
 				
-		</table>
+		</table>		
+     	 
       </div>
       <div class="modal-footer d-flex justify-content-center">
         

@@ -57,7 +57,7 @@ if($rscol[0] == null){
     
     $n = $rscol[0]+1;
 }
-$sql = "INSERT INTO registro_sorteo values (NULL,'".$resu[$i]['c']."','".$resu[$i]['a']."','".$resu[$i]['d']."',".$r.",$n,$turno,'".$tipo."','".$periodo."')";
+$sql = "INSERT INTO registro_sorteo values (NULL,'".$resu[$i]['d']."','".$resu[$i]['c']."','".$resu[$i]['a']."',".$r.",$n,$turno,'".$tipo."','".$periodo."')";
 $rs=$cn->query($sql);
 
 if($rs){
