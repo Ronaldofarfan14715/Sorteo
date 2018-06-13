@@ -90,13 +90,14 @@ function ComprobarSorteo(){
 
 let dia=$("#dia").val();
 let hora=$("#hora").val();
+let tipo=$("#tipoexa").val();
 let periodo=$("#periodo").val();
-if (dia!='' && hora!='' && periodo!=''){
+if (dia!='' && hora!='' && periodo!='' && tipo!=''){
 
 	$.ajax({
 		type:'post',
 		url:'../ajax/ComprobarSorteo.php',
-		data:{dia:dia,hora:hora,periodo:periodo},
+		data:{dia:dia,hora:hora,periodo:periodo,tipo:tipo},
 		success: function(data){
 
 		var resultado=JSON.parse(data);
@@ -126,9 +127,9 @@ if (dia!='' && hora!='' && periodo!=''){
 }
 
 
-	$(document).ready(function(){
-		MostrarHora();
-		setInterval("MostrarHora()",1000);
+		$(document).ready(function(){
+			MostrarHora();
+			setInterval("MostrarHora()",1000);
 
 
 
@@ -145,49 +146,85 @@ if (dia!='' && hora!='' && periodo!=''){
 		function llamarModalSor(){
 
 			$("#modal-sorteo").modal('show');
+			
 		}
 
-		
-function MostrarSorteo(){
-	let tipo=$("#tipoexa").val();
-	let dia=$("#dia").val();
-	let hora=$("#hora").val();
-	let periodo=$("#periodo").val();
+		function MostrarSorteoUpd(){
 
-	if(tipo!='' && dia!='' && hora!='' &&periodo!=''){
-			$.ajax({
-
-				type: 'post',
-				url: '../ajax/tabla_sorteo.php',
-				data: {tipo:tipo,dia:dia,hora:hora,periodo:periodo},
-				beforeSend:function(){
+			let tipo=$("#tipoexa").val();
+			let dia=$("#dia").val();
+			let hora=$("#hora").val();
+			let periodo=$("#periodo").val();
 			
-				$("#tabla-sorteo").html("");
-				$("#sor").html("<img width='270px' height='270px' src='../img/carga.gif' style='margin: auto;' />");
-				
-				},
-				
-				success :function(resp){
 
+			if(tipo!='' && dia!='' && hora!='' && periodo!=''){
+
+
+
+				$.ajax({
+
+					type:'post',
+					url:'../ajax/tabla_sorteo_update.php',
+					data: {tipo:tipo,dia:dia,hora:hora,periodo:periodo},
+					success: function(de){
+					//tabla-update-sorteo
+					$("#tabla-update-sorteo").html(de);
+				
+					},
+					error: function(rew){
+						console.log("error",rew);
+					},
+				});
+
+			}
+		}
+		
+		function MostrarSorteo(){
+			let tipo=$("#tipoexa").val();
+			let dia=$("#dia").val();
+			let hora=$("#hora").val();
+			let periodo=$("#periodo").val();
+
+			if(tipo!='' && dia!='' && hora!='' &&periodo!=''){
+					$.ajax({
+
+						type: 'post',
+						url: '../ajax/tabla_sorteo.php',
+						data: {tipo:tipo,dia:dia,hora:hora,periodo:periodo},
+						beforeSend:function(){
 					
-					
-					setTimeout(function(){
-					$("#tabla-sorteo").html(resp);
-					$("#sor").html("");
-					//$('#sor').hide();
-					//$("#sor").html("");
-				
-					},2000);
-	
-				},
-				error: function(respuesta){
-					console.log("error",respuesta);
-				},
+						$("#tabla-sorteo").html("");
+						$("#sor").html("<img width='270px' height='270px' src='../img/carga.gif' style='margin: auto;' />");
+						
+						},
+						
+						success :function(resp){
 
-			});
-}
+							
+							
+							setTimeout(function(){
+							$("#tabla-sorteo").html(resp);
+							$("#sor").html("");
+							//$('#sor').hide();
+							//$("#sor").html("");
+						
+							},2000);
+			
+						},
+						error: function(respuesta){
+							console.log("error",respuesta);
+						},
 
-}
+					});
+			}
+
+		}
+
+		$("#sorteupd").click(function(){
+			MostrarSorteoUpd();
+			llamarModalSorUp();
+
+		});
 
 
 		$("#sorte").click(function(e){
@@ -305,11 +342,13 @@ $(document).on('change','input[type=checkbox]',function(){
 		console.log(valordnitotal);
 });
 
-$("#sorteupd").click(function(){
 
 
+function llamarModalSorUp(){
 
-});
+$("#modal-upd-sorteo").modal('show');
+}
+
 
 $('#GuardarAsistencia').click(function(e){
 
@@ -671,7 +710,7 @@ $('#GuardarAsistencia').click(function(e){
   </div>
 </div>
 
-
+<!-- modelo de sorteo update-->
 <div class="modal fade" id="modal-upd-sorteo" tabindex="-1" role="dialog" aria-labelledby="upd-sorteo" aria-hidden="true">
   <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
     <div class="modal-content">
