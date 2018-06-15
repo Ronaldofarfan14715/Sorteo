@@ -71,7 +71,7 @@ function ModificarSorteo(){
 	let tipo=$("#tipoexa").val();
 	let periodo =$("#periodo").val();
 	let turno = dia+hora;
-
+		//console.log(newData);
 	$.ajax({
 
 		type: 'post',

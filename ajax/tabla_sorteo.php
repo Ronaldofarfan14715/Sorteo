@@ -8,6 +8,7 @@ $fecha = $dia . $hora;
 
 $contador=0;
 $contar=0;
+$contar1=0;
 $array_docente=array();
 
 
@@ -54,7 +55,8 @@ switch ($tipo) {
        		<?php
 
        			    $num = $curso->num_rows;
-                            $num2= $docente->num_rows;
+                    $num2= $docente->num_rows;
+                    
                             $n= 0;
 
        			if($num>0){
@@ -70,19 +72,16 @@ switch ($tipo) {
                                    <td><input disabled class="form-control" type="text" id="<?php echo "c".$n; ?>" value="<?php echo $datos[1]; ?>"></td>
                                    <td><input disabled class="form-control"  type="text" id="<?php echo "a".$n; ?>"value="<?php echo $datos[4]." ".$datos[2]; ?>"></td>
                                    
-                                   <?php 
-                                   
                                   
-                                    if(){
-                                    ?>
-                                   <td><input disabled class="form-control"  type="text" id="<?php echo "d".$n; ?>" value="<?php echo $array_docente[$contar]; ?>"></td>
-                                    <?php 
-                                    }
-                                   $contar++;
 
-                                   
-                                   ?>
-                                   
+                                    <?php if($contar1<$num2)
+                                    {
+                                    ?>
+                                   <td><input disabled class="form-control"  type="text" id="<?php echo "d".$n; ?>" value="<?php echo $array_docente[$contar1]; ?>"></td>
+                                   <?php 
+                                    }
+                                         $contar1++;    
+                                    ?>     
                                     
                                    
                                    <?php if($contar+$num<$num2)
@@ -92,7 +91,7 @@ switch ($tipo) {
                                    <td><input disabled class="form-control"  type="text" id="<?php echo "r".$n; ?>" value="<?php echo $array_docente[$contar+$num]; ?>"></td>
                                    <?php 
                                     }
-                                        //  $contar++;    
+                                         $contar++;    
                                     ?>                           
                             </tr>
                             </div>          

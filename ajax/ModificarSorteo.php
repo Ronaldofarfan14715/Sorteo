@@ -74,6 +74,7 @@ function updateTabla($datos,$contador,$turno,$tipo,$periodo){
        
         
     }
+    
     echo "<script>alertify.success('Exito al Modificar');</script>";
 
 }
