@@ -48,7 +48,13 @@ for($i =1; $i<= sizeof($resu); $i++){
 	if(isset($resu[$i]['r'])){
         $r = "'".$resu[$i]['r']."'";
 	}else{
-		$r = "null";
+		$r = "NULL";
+    }
+
+    if(isset($resu[$i]['d'])){
+        $d = "'".$resu[$i]['d']."'";
+    }else{
+        $d= "NULL";
     }
     
 if($rscol[0] == null){
@@ -57,7 +63,7 @@ if($rscol[0] == null){
     
     $n = $rscol[0]+1;
 }
-$sql = "INSERT INTO registro_sorteo values (NULL,'".$resu[$i]['d']."','".$resu[$i]['c']."','".$resu[$i]['a']."',".$r.",$n,$turno,'".$tipo."','".$periodo."')";
+$sql = "INSERT INTO registro_sorteo values (NULL,".$d.",'".$resu[$i]['c']."','".$resu[$i]['a']."',".$r.",$n,$turno,'".$tipo."','".$periodo."')";
 $rs=$cn->query($sql);
 
 if($rs){

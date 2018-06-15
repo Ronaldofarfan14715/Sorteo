@@ -95,7 +95,11 @@ function GuardarSorteo(){
 		data[i]["c"]=$("#c"+i).val();
 		data[i]["a"]=$("#a"+i).val();
 
-		data[i]["d"]=$("#d"+i).val();
+		if($("#d"+i).length){
+			
+			data[i]["d"]=$("#d"+i).val();
+		}
+		
 
 		if($("#r"+i).length){
 			data[i]["r"]=$("#r"+i).val();

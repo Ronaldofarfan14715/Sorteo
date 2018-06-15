@@ -38,6 +38,8 @@ switch ($tipo) {
 
                                    $array_docente[$contador]=$datos2[0];
                                    $contador++;
+
+                                   //print_r($array_docente[$contar]);
                             }
 
 
@@ -51,7 +53,7 @@ switch ($tipo) {
        		</tr>
        		<?php
 
-       			$num = $curso->num_rows;
+       			    $num = $curso->num_rows;
                             $num2= $docente->num_rows;
                             $n= 0;
 
@@ -61,19 +63,36 @@ switch ($tipo) {
                             $n++;
 
                      ?>
+                     
                             <div class="form-group">
                             <tr>
-                                   <fieldset disabled>
+                                   
                                    <td><input disabled class="form-control" type="text" id="<?php echo "c".$n; ?>" value="<?php echo $datos[1]; ?>"></td>
                                    <td><input disabled class="form-control"  type="text" id="<?php echo "a".$n; ?>"value="<?php echo $datos[4]." ".$datos[2]; ?>"></td>
+                                   
+                                   <?php 
+                                   
+                                  
+                                    if(){
+                                    ?>
                                    <td><input disabled class="form-control"  type="text" id="<?php echo "d".$n; ?>" value="<?php echo $array_docente[$contar]; ?>"></td>
+                                    <?php 
+                                    }
+                                   $contar++;
+
+                                   
+                                   ?>
+                                   
+                                    
+                                   
                                    <?php if($contar+$num<$num2)
                                    {
                                     ?>
+                                    
                                    <td><input disabled class="form-control"  type="text" id="<?php echo "r".$n; ?>" value="<?php echo $array_docente[$contar+$num]; ?>"></td>
                                    <?php 
                                     }
-                                          $contar++;    
+                                        //  $contar++;    
                                     ?>                           
                             </tr>
                             </div>          
