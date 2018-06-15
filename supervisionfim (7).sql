@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 02-06-2018 a las 22:00:22
+-- Tiempo de generación: 15-06-2018 a las 20:56:26
 -- Versión del servidor: 10.1.32-MariaDB
 -- Versión de PHP: 7.2.5
 
@@ -108,8 +108,8 @@ INSERT INTO `cursoexamen` (`idExamen`, `idAgrupacionfk`, `idTurnofk`, `codAulafk
 (1, 1, 38, 'A2-159', 'PARCIAL'),
 (2, 2, 38, 'A2-160', 'PARCIAL'),
 (3, 5, 38, 'A2-159', 'PARCIAL'),
-(4, 3, 18, 'A2-160', 'PARCIAL'),
-(5, 4, 38, 'A2-159', 'PARCIAL');
+(4, 3, 38, 'A2-160', 'PARCIAL'),
+(5, 4, 28, 'A2-159', 'PARCIAL');
 
 -- --------------------------------------------------------
 
@@ -450,24 +450,44 @@ CREATE TABLE `registro_docentes` (
 --
 
 INSERT INTO `registro_docentes` (`id`, `id_sup_doc`, `id_turno`, `tipoexamen`, `asistencia`, `fecha_asistencia`, `ciclo`, `fecha_registro`) VALUES
-(105, 5, 38, 'PARCIAL', '1', '2018-06-02 10:03:10', '181', '2018-05-16 13:52:59'),
-(106, 5, 410, 'PARCIAL', '1', '2018-05-16 13:54:08', '181', '2018-05-16 13:52:59'),
-(107, 5, 314, 'PARCIAL', '1', '2018-06-02 10:05:36', '181', '2018-05-16 13:53:00'),
-(108, 3, 18, 'PARCIAL', '1', '2018-06-02 11:10:02', '181', '2018-06-02 11:09:30'),
-(109, 3, 38, 'PARCIAL', '1', '2018-06-02 11:10:21', '181', '2018-06-02 11:09:31'),
-(110, 3, 212, 'PARCIAL', '0', '0000-00-00 00:00:00', '181', '2018-06-02 11:09:31'),
-(111, 6, 38, 'PARCIAL', '1', '2018-06-02 11:25:52', '181', '2018-06-02 11:22:19'),
-(112, 6, 210, 'PARCIAL', '0', '0000-00-00 00:00:00', '181', '2018-06-02 11:22:19'),
-(113, 6, 312, 'PARCIAL', '0', '0000-00-00 00:00:00', '181', '2018-06-02 11:22:19'),
-(114, 7, 38, 'PARCIAL', '1', '2018-06-02 11:25:51', '181', '2018-06-02 11:22:47'),
-(115, 7, 210, 'PARCIAL', '0', '0000-00-00 00:00:00', '181', '2018-06-02 11:22:47'),
-(116, 7, 214, 'PARCIAL', '0', '0000-00-00 00:00:00', '181', '2018-06-02 11:22:47'),
-(117, 8, 28, 'PARCIAL', '0', '0000-00-00 00:00:00', '181', '2018-06-02 11:23:14'),
-(118, 8, 38, 'PARCIAL', '1', '2018-06-02 11:25:52', '181', '2018-06-02 11:23:14'),
-(119, 8, 312, 'PARCIAL', '0', '0000-00-00 00:00:00', '181', '2018-06-02 11:23:14'),
-(120, 11, 18, 'PARCIAL', '0', '0000-00-00 00:00:00', '181', '2018-06-02 14:56:37'),
-(121, 11, 38, 'PARCIAL', '1', '2018-06-02 14:57:06', '181', '2018-06-02 14:56:37'),
-(122, 11, 210, 'PARCIAL', '0', '0000-00-00 00:00:00', '181', '2018-06-02 14:56:38');
+(123, 5, 18, 'PARCIAL', '0', '0000-00-00 00:00:00', '181', '2018-06-15 09:06:48'),
+(124, 5, 28, 'PARCIAL', '0', '0000-00-00 00:00:00', '181', '2018-06-15 09:06:48'),
+(125, 5, 38, 'PARCIAL', '1', '2018-06-15 09:08:28', '181', '2018-06-15 09:06:48'),
+(126, 3, 18, 'PARCIAL', '0', '0000-00-00 00:00:00', '181', '2018-06-15 09:07:09'),
+(127, 3, 28, 'PARCIAL', '0', '0000-00-00 00:00:00', '181', '2018-06-15 09:07:10'),
+(128, 3, 38, 'PARCIAL', '1', '2018-06-15 09:08:28', '181', '2018-06-15 09:07:10'),
+(129, 6, 18, 'PARCIAL', '0', '0000-00-00 00:00:00', '181', '2018-06-15 09:07:32'),
+(130, 6, 28, 'PARCIAL', '0', '0000-00-00 00:00:00', '181', '2018-06-15 09:07:32'),
+(131, 6, 38, 'PARCIAL', '1', '2018-06-15 09:08:28', '181', '2018-06-15 09:07:33'),
+(139, 7, 38, 'PARCIAL', '1', '2018-06-15 11:00:13', '181', '2018-06-15 10:58:55');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `registro_sorteo`
+--
+
+CREATE TABLE `registro_sorteo` (
+  `idregSorteo` int(11) NOT NULL,
+  `Docente` varchar(45) DEFAULT NULL,
+  `Curso` varchar(100) NOT NULL,
+  `Aula` varchar(10) NOT NULL,
+  `Reemplazo` varchar(45) DEFAULT NULL,
+  `NumSorteo` int(3) NOT NULL,
+  `Turno` int(3) NOT NULL,
+  `tipoexamen` varchar(20) NOT NULL,
+  `periodo` int(5) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `registro_sorteo`
+--
+
+INSERT INTO `registro_sorteo` (`idregSorteo`, `Docente`, `Curso`, `Aula`, `Reemplazo`, `NumSorteo`, `Turno`, `tipoexamen`, `periodo`) VALUES
+(12, 'LEONARDO NIKOLAI VINCES ', 'ANALISIS DE SISTEMAS', 'A2-159 A', 'q', 1, 38, 'parciales', 181),
+(13, 'MANUEL AZAHUANCHE ', 'ANALISIS DE SISTEMAS', 'A2-160 B', 'a', 1, 38, 'parciales', 181),
+(14, ' IVAN ARTURO CALLE ', 'MAQUINARIA PESADA', 'A2-159 A-B', 'c', 1, 38, 'parciales', 181),
+(15, ' NILTON ANCHAYHUA ', 'ELECTRONICA', 'A2-160 A', '', 1, 38, 'parciales', 181);
 
 -- --------------------------------------------------------
 
@@ -509,8 +529,8 @@ INSERT INTO `supervision_docente` (`id_sup_doc`, `DNI`, `contrasena`, `turno_par
 (5, 44052294, '4405', '3', '3', '3', 1, '1'),
 (6, 9956998, '9956', '3', '3', '3', 0, '1'),
 (7, 42971211, '4297', '3', '2', '3', 0, '1'),
-(8, 40803000, '4080', '3', '3', '3', 0, '1'),
-(11, 9974715, '9974', '3', '3', '3', 0, '1');
+(8, 40803000, '4080', '3', '3', '3', 0, '0'),
+(11, 9974715, '9974', '3', '3', '3', 0, '0');
 
 -- --------------------------------------------------------
 
@@ -537,21 +557,21 @@ CREATE TABLE `turnos` (
 --
 
 INSERT INTO `turnos` (`id_turno`, `dia`, `hora`, `doce_min`, `doce_max`, `adicional`, `observacion`, `fecha_examen`, `contador`, `ciclo`, `fecha_registro`) VALUES
-(18, 'lunes', '8 - 10', '9', '11', '2', NULL, NULL, '7', '181', '2018-04-21 09:26:06'),
-(28, 'martes', '8-10', '11', '13', '1', NULL, NULL, '3', '181', '2018-04-21 09:32:17'),
-(38, 'miercoles', '8-10', '8', '10', '1', NULL, NULL, '9', '181', '2018-04-21 09:32:17'),
+(18, 'lunes', '8 - 10', '9', '11', '2', NULL, NULL, '6', '181', '2018-04-21 09:26:06'),
+(28, 'martes', '8-10', '11', '13', '1', NULL, NULL, '6', '181', '2018-04-21 09:32:17'),
+(38, 'miercoles', '8-10', '8', '10', '1', NULL, NULL, '6', '181', '2018-04-21 09:32:17'),
 (48, 'jueves', '8-10', '10', '12', '1', NULL, NULL, '0', '181', '2018-04-21 09:32:17'),
 (58, 'viernes', '8-10', '14', '16', '2', NULL, NULL, '0', '181', '2018-04-21 09:32:17'),
 (110, 'lunes', '10-12', '10', '12', '1', NULL, NULL, '0', '181', '2018-04-21 09:34:04'),
-(112, 'lunes', '12-2', '5', '7', '9', NULL, NULL, '2', '181', '2018-04-21 09:34:39'),
-(114, 'lunes', '2-4', '9', '11', '1', NULL, NULL, '3', '181', '2018-04-21 09:35:21'),
-(210, 'martes', '10-12', '12', '14', '1', NULL, NULL, '3', '181', '2018-04-21 09:34:05'),
-(212, 'martes', '2-12', '8', '10', '2', NULL, NULL, '2', '181', '2018-04-21 09:34:39'),
-(214, 'martes', '2-4', '9', '11', '1', NULL, NULL, '3', '181', '2018-04-21 09:35:22'),
+(112, 'lunes', '12-2', '5', '7', '9', NULL, NULL, '0', '181', '2018-04-21 09:34:39'),
+(114, 'lunes', '2-4', '9', '11', '1', NULL, NULL, '0', '181', '2018-04-21 09:35:21'),
+(210, 'martes', '10-12', '12', '14', '1', NULL, NULL, '0', '181', '2018-04-21 09:34:05'),
+(212, 'martes', '2-12', '8', '10', '2', NULL, NULL, '0', '181', '2018-04-21 09:34:39'),
+(214, 'martes', '2-4', '9', '11', '1', NULL, NULL, '0', '181', '2018-04-21 09:35:22'),
 (310, 'miercoles', '10-12', '8', '10', '1', NULL, NULL, '0', '181', '2018-04-21 09:34:05'),
-(312, 'miercoles', '12-2', '14', '16', '2', NULL, NULL, '2', '181', '2018-04-21 09:34:39'),
-(314, 'miercoles', '2 -4', '11', '13', '1', NULL, NULL, '1', '181', '2018-04-21 09:35:22'),
-(410, 'jueves', '10-12', '4', '6', '1', NULL, NULL, '2', '181', '2018-04-21 09:34:05'),
+(312, 'miercoles', '12-2', '14', '16', '2', NULL, NULL, '0', '181', '2018-04-21 09:34:39'),
+(314, 'miercoles', '2 -4', '11', '13', '1', NULL, NULL, '0', '181', '2018-04-21 09:35:22'),
+(410, 'jueves', '10-12', '4', '6', '1', NULL, NULL, '0', '181', '2018-04-21 09:34:05'),
 (412, 'jueves', '12-2', '12', '14', '2', NULL, NULL, '0', '181', '2018-04-21 09:34:39'),
 (414, 'jueves', '2-4', '8', '10', '1', NULL, NULL, '0', '181', '2018-04-21 09:35:22'),
 (510, 'viernes', '10-12', '8', '10', '', NULL, NULL, '0', '181', '2018-04-21 09:34:05'),
@@ -605,6 +625,12 @@ ALTER TABLE `registro_docentes`
   ADD KEY `id_turno` (`id_turno`);
 
 --
+-- Indices de la tabla `registro_sorteo`
+--
+ALTER TABLE `registro_sorteo`
+  ADD PRIMARY KEY (`idregSorteo`);
+
+--
 -- Indices de la tabla `sorteo`
 --
 ALTER TABLE `sorteo`
@@ -646,7 +672,13 @@ ALTER TABLE `cursoexamen`
 -- AUTO_INCREMENT de la tabla `registro_docentes`
 --
 ALTER TABLE `registro_docentes`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=123;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=141;
+
+--
+-- AUTO_INCREMENT de la tabla `registro_sorteo`
+--
+ALTER TABLE `registro_sorteo`
+  MODIFY `idregSorteo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT de la tabla `sorteo`
@@ -658,7 +690,7 @@ ALTER TABLE `sorteo`
 -- AUTO_INCREMENT de la tabla `supervision_docente`
 --
 ALTER TABLE `supervision_docente`
-  MODIFY `id_sup_doc` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id_sup_doc` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT de la tabla `turnos`
