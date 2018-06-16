@@ -55,7 +55,7 @@ switch ($tipo) {
        		<?php
 
        			    $num = $curso->num_rows;
-                    $num2= $docente->num_rows;
+                            $num2= $docente->num_rows;
                     
                             $n= 0;
 
